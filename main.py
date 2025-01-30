@@ -1,31 +1,40 @@
-import curses
+import openai
+from dotenv import load_dotenv
+import os
+import json
 
+load_dotenv()
+client = openai.OpenAI(
+    api_key=os.getenv("AKASH_API"),
+    base_url="https://chatapi.akash.network/api/v1"
+)
 
-def display_contact(stdscr, contact):
-    stdscr.clear()
-    stdscr.addstr(1, 1, f"Name: {contact['name']}")
-    stdscr.addstr(2, 1, f"Phone: {contact['phone']}")
-    stdscr.addstr(3, 1, f"Email: {contact['email']}")
-    stdscr.addstr(5, 1, "Use left/right arrows to navigate, 'q' to quit")
-    stdscr.refresh()
+def query_llm(system_promt, user_prompt, json_schema):
 
-def main(stdscr):
-    curses.curs_set(0)
-    contacts = [
-        {"name": "John Doe", "phone": "123-456-7890", "email": "john@example.com"},
-        {"name": "Jane Smith", "phone": "098-765-4321", "email": "jane@example.com"}
-    ]
-    current_contact = 0
+    response = client.chat.completions.create(
+        model="Meta-Llama-3-1-8B-Instruct-FP8",
+        messages = [
+            {
+                "role": "system",
+                "content": system_promt + "\n" + "ONLY respond in the following JSON format: " + json_schema
+            },
+            {
+                "role": "user",
+                "content": user_prompt
+            }
+        ],
+        temperature=0.0,
+    )
 
-    while True:
-        display_contact(stdscr, contacts[current_contact])
-        key = stdscr.getch()
+    #check if valid JSON
+    try:
+        json_response = json.loads(response.choices[0].message.content)
+        return json_response
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+        print("The content is not valid JSON. Returning the raw content instead.")
+        return response.choices[0].message.content
+    
 
-        if key == ord('q'):
-            break
-        elif key == curses.KEY_RIGHT:
-            current_contact = (current_contact + 1) % len(contacts)
-        elif key == curses.KEY_LEFT:
-            current_contact = (current_contact - 1) % len(contacts)
-
-curses.wrapper(main)
+json_schema = '{"name": "John Doe", "phone": "123-456-7890", "email": ""}'
+print(query_llm(system_promt="ur a ai assistant" , user_prompt="tell me about canada", json_schema=json_schema))
