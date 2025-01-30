@@ -61,3 +61,5 @@ add_new()
 # 'who do i know that can intro me to Jane Doe?'
 # what should i say to user xys
 # who should I invite to my birthday party given we should have common friends
+# who should I message to get a job at company xyz
+# who should I message to check in with them and maintain relationship

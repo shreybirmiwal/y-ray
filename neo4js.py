@@ -1,13 +1,19 @@
 from langchain_neo4j import GraphCypherQAChain, Neo4jGraph
 from langchain_openai import ChatOpenAI
-
+from neo4j.debug import watch
+watch("neo4j")
 
 from dotenv import load_dotenv
 import os
 load_dotenv()
 
+print(os.getenv("NEO4J_URI"))
+print(os.getenv("NEO4J_USERNAME"))
+print(os.getenv("NEO4J_PASSWORD"))
 
-graph = Neo4jGraph(url="neo4j+s://5f3c6da1.databases.neo4j.io", username="neo4j", password="f0VIEK1-IwQqhfZvlM6_kZxQyA8GdbSVta-ckU5pHVw")
+
+
+graph = Neo4jGraph(url=os.getenv("NEO4J_URI"), username=os.getenv("NEO4J_USERNAME"), password=os.getenv("NEO4J_PASSWORD"))
 
 graph.query(
     """
