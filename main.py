@@ -9,14 +9,14 @@ client = openai.OpenAI(
     base_url="https://chatapi.akash.network/api/v1"
 )
 
-def query_llm(system_promt, user_prompt, json_schema):
+def query_llm(system_prompt, user_prompt, json_schema):
 
     response = client.chat.completions.create(
         model="Meta-Llama-3-1-8B-Instruct-FP8",
         messages = [
             {
                 "role": "system",
-                "content": system_promt + "\n" + "ONLY respond in the following JSON format: " + json_schema
+                "content": system_prompt + "\n" + "ONLY respond in the following JSON format: " + json_schema
             },
             {
                 "role": "user",
@@ -36,5 +36,28 @@ def query_llm(system_promt, user_prompt, json_schema):
         return response.choices[0].message.content
     
 
-json_schema = '{"name": "John Doe", "phone": "123-456-7890", "email": ""}'
-print(query_llm(system_promt="ur a ai assistant" , user_prompt="tell me about canada", json_schema=json_schema))
+def add_new():
+    system_prompt = "You are to extract information from the following prompt. You can leave things empty if it is NA"
+    json_schema = '{"name": "John Doe", "contact": "Phone: 123-456-7890, Email john@gmail.com", "birthday": "07-25-2001", "job": "NA", "facts": "Likes apples", "friends": ["Jane Doe", "Jack Doe"], "location": "SF"}'
+    user_prompt = input("Who would you like to add to the network? ")
+    
+    structured = query_llm(system_prompt, user_prompt, json_schema)
+    print(structured)
+
+    try:
+        with open('database.json', 'r', encoding='utf-8') as file:
+            database = json.load(file)
+    except FileNotFoundError:
+        database = []
+
+    database.append(structured)
+    with open('database.json', 'w', encoding='utf-8') as file:
+        json.dump(database, file, indent=4)
+    
+add_new()
+# who's birthday is coming up?
+# update users details
+# 'who can i meet in NYC related to ai next week?'
+# 'who do i know that can intro me to Jane Doe?'
+# what should i say to user xys
+# who should I invite to my birthday party given we should have common friends

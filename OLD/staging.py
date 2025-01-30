@@ -1,7 +1,7 @@
 import json
 from ollama import Client
 
-def add_new_contact(input):
+def query_ollama(system_prompt, user_prompt):
     client = Client()
     
     try:
@@ -14,7 +14,7 @@ def add_new_contact(input):
                 },
                 {
                     'role': 'user',
-                    'content': input
+                    'content': user_prompt
                 }
             ],
             options={
@@ -55,6 +55,4 @@ def add_new_contact(input):
         print(f"An error occurred: {e}")
         return None
 
-# Test the function
-result = add_new_contact('lebron james, 5129427, 7299, apple works at appple?')
-print("Result:", result)
+
