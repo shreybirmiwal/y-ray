@@ -12,16 +12,24 @@ client = openai.OpenAI(
     base_url="https://chatapi.akash.network/api/v1"
 )
 graph = Neo4jGraph(url=os.getenv("NEO4J_URI"), username=os.getenv("NEO4J_USERNAME"), password=os.getenv("NEO4J_PASSWORD"), enhanced_schema=True,)
-llm = ChatOpenAI(
+llm_zt= ChatOpenAI(
     temperature=0,
     openai_api_key=os.getenv("AKASH_API"),
     model="Meta-Llama-3-1-8B-Instruct-FP8",
     request_timeout=60,
     base_url="https://chatapi.akash.network/api/v1"
 )
+llm_t = ChatOpenAI(
+    temperature=.7,
+    openai_api_key=os.getenv("AKASH_API"),
+    model="Meta-Llama-3-1-8B-Instruct-FP8",
+    request_timeout=60,
+    base_url="https://chatapi.akash.network/api/v1"
+)
 chain = GraphCypherQAChain.from_llm(
-    llm=llm,
-    graph=graph,
+   cypher_llm=llm_zt,
+    qa_llm=llm_t,
+            graph=graph,
     verbose=True,
     return_intermediate_steps=True,
     allow_dangerous_requests=True
@@ -60,11 +68,6 @@ def query_llm(system_prompt, user_prompt, json_schema="", json_mode=True):
         print("The content is not valid JSON. Returning the raw content instead.")
         return response.choices[0].message.content
 
-def getUpdatedSchema(graph):
-    graph.refresh_schema()
-    print(graph.schema)
-    return graph.schema
-
 def add_new(user_prompt=""):
     system_prompt = "You are to extract information from the following prompt. You can leave things empty if it is NA"
     json_schema = '{"name": "John Doe", "contact": "Phone: 123-456-7890, Email john@gmail.com", "birthday": "07-25-2001", "job": "NA", "facts": "Likes apples", "friends": ["Jane Doe", "Jack Doe"], "location": "SF"}'
@@ -95,10 +98,9 @@ def add_new(user_prompt=""):
 
 def query(user_prompt):
     print("Querying...")
-    getUpdatedSchema(graph=graph)
+    print('Schema:', graph.schema)
 
-
-    result = chain.invoke({"query": user_prompt})
+    result = chain.invoke({"query": user_prompt, "schema": graph.schema})
     print(f"Intermediate steps: {result['intermediate_steps']}")
     print(f"Final answer: {result['result']}")
 
