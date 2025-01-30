@@ -46,5 +46,17 @@
             "Neev Gupta"
         ],
         "location": "NA"
+    },
+    {
+        "name": "Lebron James",
+        "contact": "Phone: NA, Email NA",
+        "birthday": "NA",
+        "job": "Professional Basketball Player",
+        "facts": "4-time NBA champion, 4-time NBA MVP",
+        "friends": [
+            "Dwyane Wade",
+            "Chris Bosh"
+        ],
+        "location": "Los Angeles"
     }
 ]
