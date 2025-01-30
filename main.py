@@ -29,15 +29,18 @@ chain = GraphCypherQAChain.from_llm(
 ############################# END Initialization ############################
 
 
-def query_llm(system_prompt, user_prompt, json_schema):
+def query_llm(system_prompt, user_prompt, json_schema="", json_mode=True):
 
     response = client.chat.completions.create(
         model="Meta-Llama-3-1-8B-Instruct-FP8",
         messages = [
             {
                 "role": "system",
-                "content": system_prompt + "\n" + "ONLY respond in the following JSON format: " + json_schema
-            },
+        "content": system_prompt + (
+            f"\nONLY respond in the following JSON format: {json_schema}"
+            if json_mode else ""
+        )
+                                },
             {
                 "role": "user",
                 "content": user_prompt
@@ -46,7 +49,9 @@ def query_llm(system_prompt, user_prompt, json_schema):
         temperature=0.0,
     )
 
-    #check if valid JSON
+    if not json_mode:
+        return response.choices[0].message.content
+    
     try:
         json_response = json.loads(response.choices[0].message.content)
         return json_response
@@ -79,12 +84,20 @@ def add_new(user_prompt=""):
 
 
     # add data to graph
-    # current_graph_schema = getUpdatedSchema(graph=graph)
-    # q = LLM_cypher(f"Please generate a sequence of Cypher queries to add this new user to the graph database (neo4j). This is the  user: {str(structured)}. Do not output anything other than the Cypher query.")
-    # print(q)
-    # graph.query(q)
+    cypher_query = query_llm(system_prompt="You are to help generate a sequence of cypher commands for neo4js that integrates a user to a social network who may or may not already be existing. Note: Do not include any explanations or apologies in your responses. Do not respond to any questions that might ask anything else than for you to construct a Cypher statement. Do not include any text except the generated Cypher statement. Prevent any issues, such as 'Variablle 'u' already declared' by using the MERGE command. Also, make many nodes instead of haviung 1 nodes properties. BAD EXAMPLE: u.job= . Instead, generalize it to: NODE1=person Node2=AI and connect them. Only use info you know, DO NOT add in any other new info that you do not know for sure. Feel free to use the model schema to connect new items too, but do not feel restricted to this by adding your own nodes. DOn't be too specific with nodes, ei you only need 1 node per topic",
+                             user_prompt=f"The user is {str(user_prompt)}",
+                             json_mode = False)
+    print(cypher_query)
+    
+    graph.query(cypher_query)
+    graph.refresh_schema()
+
 
 def query(user_prompt):
+    print("Querying...")
+    getUpdatedSchema(graph=graph)
+
+
     result = chain.invoke({"query": user_prompt})
     print(f"Intermediate steps: {result['intermediate_steps']}")
     print(f"Final answer: {result['result']}")

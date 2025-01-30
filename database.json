@@ -58,5 +58,79 @@
             "Chris Bosh"
         ],
         "location": "Los Angeles"
+    },
+    {
+        "name": "Shrey Birmiwal",
+        "contact": "NA",
+        "birthday": "07-27-2007",
+        "job": "NA",
+        "facts": "Into blockchain, AI",
+        "friends": [
+            "Neev"
+        ],
+        "location": "Austin, Texas"
+    },
+    {
+        "name": "Shrey Birmsibi Raja",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "NA",
+        "facts": "Likes robotics",
+        "friends": "NA",
+        "location": "NA"
+    },
+    {
+        "name": "gangii",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "NA",
+        "facts": "Likes physics and robots",
+        "friends": "NA",
+        "location": "NA"
+    },
+    {
+        "name": "gangii",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "NA",
+        "facts": "Likes physics and robots",
+        "friends": "NA",
+        "location": "NA"
+    },
+    {
+        "name": "Shrey",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "NA",
+        "facts": "Into AI and Blockchain, wants to change the world",
+        "friends": "NA",
+        "location": "NA"
+    },
+    {
+        "name": "sbdiddlier",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "NA",
+        "facts": "Likes AI",
+        "friends": "NA",
+        "location": "NA"
+    },
+    {
+        "name": "Shrey",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "NA",
+        "facts": "Likes blockchain",
+        "friends": "NA",
+        "location": "NA"
+    },
+    {
+        "name": "Shrey Birmiwal",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "Working with Dr. Sriram Vishwanth",
+        "facts": "Passionate in AI and blockchain",
+        "friends": "NA",
+        "location": "NA"
     }
 ]
