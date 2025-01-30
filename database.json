@@ -13,5 +13,38 @@
             "Jack Doe"
         ],
         "location": "Austin, Texas"
+    },
+    {
+        "name": "Shrey Birmiwal",
+        "contact": "Phone: 512-942-7299",
+        "birthday": "NA",
+        "job": "NA",
+        "facts": "Likes blockchain and AI",
+        "friends": [
+            "Neev Gupta"
+        ],
+        "location": "UT"
+    },
+    {
+        "name": "Shrey Birmiwal",
+        "contact": "Phone: 512-942-7299",
+        "birthday": "NA",
+        "job": "NA",
+        "facts": "Likes blockchain and AI",
+        "friends": [
+            "Neev Gupta"
+        ],
+        "location": "UT"
+    },
+    {
+        "name": "Shrey Birmiwal",
+        "contact": "Phone: 512-942-7299",
+        "birthday": "NA",
+        "job": "NA",
+        "facts": "Likes blockchain and AI",
+        "friends": [
+            "Neev Gupta"
+        ],
+        "location": "NA"
     }
 ]

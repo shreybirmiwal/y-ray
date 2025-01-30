@@ -5,12 +5,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-print(os.getenv("NEO4J_URI"))
-print(os.getenv("NEO4J_USERNAME"))
-print(os.getenv("NEO4J_PASSWORD"))
-
-
-graph = Neo4jGraph(url=os.getenv("NEO4J_URI"), username=os.getenv("NEO4J_USERNAME"), password=os.getenv("NEO4J_PASSWORD"))
+graph = Neo4jGraph(url=os.getenv("NEO4J_URI"), username=os.getenv("NEO4J_USERNAME"), password=os.getenv("NEO4J_PASSWORD"), enhanced_schema=True,)
 
 graph.query(
     """
@@ -21,3 +16,12 @@ MERGE (a:Actor {name:actor})
 MERGE (a)-[:ACTED_IN]->(m)
 """
 )
+
+
+def getUpdatedSchema(graph):
+    graph.refresh_schema()
+    print(graph.schema)
+    return graph.schema
+
+
+getUpdatedSchema(graph=graph)
