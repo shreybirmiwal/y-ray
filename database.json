@@ -132,5 +132,91 @@
         "facts": "Passionate in AI and blockchain",
         "friends": "NA",
         "location": "NA"
+    },
+    {
+        "name": "Shrey",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "AI researcher",
+        "facts": "Loves coding",
+        "friends": [
+            "Professor Adam Johnson"
+        ],
+        "location": "Austin"
+    },
+    {
+        "name": "Emily",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "Blockchain Developer",
+        "facts": "Pioneering decentralized finance platforms, collaborates with tech innovators, passionate about cryptocurrency and smart contract development",
+        "friends": "NA",
+        "location": "San Francisco"
+    },
+    {
+        "name": "Alex",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "Data Science Expert",
+        "facts": "Specializes in machine learning and natural language processing",
+        "friends": [
+            "Professor Lisa Thompson"
+        ],
+        "location": "New York City"
+    },
+    {
+        "name": "Sarah",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "Cybersecurity Powerhouse",
+        "facts": "Designs advanced network security protocols, explores ethical hacking techniques, collaborates with blockchain and tech professionals to enhance digital safety",
+        "friends": "NA",
+        "location": "Seattle"
+    },
+    {
+        "name": "Sarah",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "Cybersecurity Powerhouse",
+        "facts": "Designs advanced network security protocols, explores ethical hacking techniques, collaborates with blockchain and tech professionals to enhance digital safety",
+        "friends": "NA",
+        "location": "Seattle"
+    },
+    {
+        "name": "Michael",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "Robotics Engineer",
+        "facts": "NA",
+        "friends": "NA",
+        "location": "Boston"
+    },
+    {
+        "name": "Shrey Birmiwal",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "UT Blockchain Hackathon Team",
+        "facts": "Likes blockchain and AI",
+        "friends": [
+            "Dr. Sriram Vishwanath",
+            "Sree Duggirala",
+            "Savi",
+            "tx blockchain guys"
+        ],
+        "location": "NA"
+    },
+    {
+        "name": "Shrey Birmiwal",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "UT Blockchain Hackathon Team",
+        "facts": "Likes blockchain and AI",
+        "friends": [
+            "Dr. Sriram Vishwanath",
+            "Sree Duggirala",
+            "Savi",
+            "UT BTX Blockchain Guys"
+        ],
+        "location": "NA"
     }
 ]

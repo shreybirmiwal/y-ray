@@ -87,8 +87,8 @@ def add_new(user_prompt=""):
 
 
     # add data to graph
-    cypher_query = query_llm(system_prompt="You are to help generate a sequence of cypher commands for neo4js that integrates a user to a social network who may or may not already be existing. Note: Do not include any explanations or apologies in your responses. Do not respond to any questions that might ask anything else than for you to construct a Cypher statement. Do not include any text except the generated Cypher statement. Prevent any issues, such as 'Variablle 'u' already declared' by using the MERGE command. Also, make many nodes instead of haviung 1 nodes properties. BAD EXAMPLE: u.job= . Instead, generalize it to: NODE1=person Node2=AI and connect them. Only use info you know, DO NOT add in any other new info that you do not know for sure. Feel free to use the model schema to connect new items too, but do not feel restricted to this by adding your own nodes. DOn't be too specific with nodes, ei you only need 1 node per topic",
-                             user_prompt=f"The user is {str(user_prompt)}",
+    cypher_query = query_llm(system_prompt="You are to help generate a sequence of cypher commands for neo4js that integrates a user to a social network who may or may not already be existing. Note: Do not include any explanations or apologies in your responses. Do not respond to any questions that might ask anything else than for you to construct a Cypher statement. Do not include any text except the generated Cypher statement. Prevent any issues, such as 'variable 'u' already declared.' Try using the MERGE command. Also, make many nodes instead of haviung 1 nodes properties. BAD EXAMPLE: u.job= . Instead, generalize it to: NODE1=person Node2=AI and connect them. Only use info you know, DO NOT add in any other new info that you do not know for sure. Feel free to use the model schema to connect new items too, but do not feel restricted to this by adding your own nodes. DOn't be too specific with nodes, ei you only need 1 node per topic",
+                             user_prompt=f"The user is {str(user_prompt)}. Possible connectors are: 'WORKS_ON' 'FRIENDS_WITH' 'LOCATION' and 'INTEREST' as a fallback. ",
                              json_mode = False)
     print(cypher_query)
     
@@ -100,9 +100,14 @@ def query(user_prompt):
     print("Querying...")
     print('Schema:', graph.schema)
 
-    result = chain.invoke({"query": user_prompt, "schema": graph.schema})
+    result = chain.invoke({"query": user_prompt + "\n . Instead of Hard Matches, Use Fuzzy Searches, such as Lowercase and contains instead of hard matches. Make matches loose and try to find many matches that you can rank. Do NOT use SIZE() directly in RETURN., make it valid cypher to run in neo4js", "schema": graph.schema})
     print(f"Intermediate steps: {result['intermediate_steps']}")
     print(f"Final answer: {result['result']}")
+
+
+    #shrey is a high schooler whos into AI and blockchain. Hes building an app to connect friends, hes friends with Avi and Dhiyaan
+    #avi is friends with shrey, also interested in AI
+
 
     # who's birthday is coming up?
     # update users details
@@ -112,7 +117,6 @@ def query(user_prompt):
     # who should I invite to my birthday party given we should have common friends
     # who should I message to get a job at company xyz
     # who should I message to check in with them and maintain relationship
-
 
 while(True):
     choice = input("/add, /query, /exit: ")
