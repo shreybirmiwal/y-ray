@@ -218,5 +218,80 @@
             "UT BTX Blockchain Guys"
         ],
         "location": "NA"
+    },
+    {
+        "name": "Harish Kholi",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "TXBlockchain, Building in Blockchain and AI, Texas Venture Group (TVG)",
+        "facts": "NA",
+        "friends": [
+            "Krish",
+            "Savi",
+            "Sree"
+        ],
+        "location": "Texas"
+    },
+    {
+        "name": "Shrey Birmiwal",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "UT Blockchain Hackathon Team",
+        "facts": "Likes blockchain and AI",
+        "friends": [
+            "Dr. Sriram Vishwanath",
+            "Sree Duggirala",
+            "Savi",
+            "UT BTX Blockchain Guys"
+        ],
+        "location": "NA"
+    },
+    {
+        "name": "Harish Kholi",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "Blockchain and AI Developer, TXBlockchain",
+        "facts": "Member of Texas Venture Group (TVG)",
+        "friends": [
+            "Krish",
+            "Savi",
+            "Sree"
+        ],
+        "location": "Texas"
+    },
+    {
+        "name": "Harish Kholi",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "Blockchain and AI Developer, TXBlockchain",
+        "facts": "Member of Texas Venture Group (TVG)",
+        "friends": [
+            "Krish",
+            "Savi",
+            "Sree"
+        ],
+        "location": "Texas"
+    },
+    {
+        "name": "Harish Kholi",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "TXBlockchain, Building in Blockchain and AI, Texas Venture Group (TVG)",
+        "facts": "NA",
+        "friends": [
+            "Krish",
+            "Savi",
+            "Sree"
+        ],
+        "location": "Texas"
+    },
+    {
+        "name": "Venkat",
+        "contact": "NA",
+        "birthday": "NA",
+        "job": "Angel investing firm",
+        "facts": "NA",
+        "friends": "NA",
+        "location": "UT, University of Texas"
     }
 ]
